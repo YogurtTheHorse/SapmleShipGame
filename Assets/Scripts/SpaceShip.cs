@@ -1,8 +1,18 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody))]
 public class SpaceShip : MonoBehaviour
 {
+    [Tooltip("Left wing point of force applying for rolling")]
+    public Transform leftWing;
+
+    [Tooltip("Right wing point of force applying for rolling")]
+    public Transform rightWing;
+
+    [Tooltip("Point of applying pitch force")]
+    public Transform tailPoint;
+
     [Range(0, 1), Tooltip("Current power on engine")]
     public float power = 0;
 
@@ -13,21 +23,24 @@ public class SpaceShip : MonoBehaviour
     public float pitchPower = 0;
 
     [Tooltip("Speed of changing roll angle per second. Degrees.")]
-    public float fullRollSpeed = 120f;
+    public float fullRollForce = 120f;
 
     [Tooltip("Speed of changing pitch angle per second. Degrees.")]
-    public float fullPitchSpeed = 30f;
+    public float fullPitchForce = 30f;
 
     [Tooltip("Max speed of movement")]
     public float fullThrustForce = 50;
 
     public float liftForceCoefficient = 0.01f;
-    public float dragCoefficient = 0.01f;
+    public Vector3 dragCoefficient = Vector3.zero;
 
     public float maxVelocity = 130;
 
-    private Vector3 _liftForce, _thrustForce;
-    private Vector3 _dragAbsoluteForce;
+    public Vector3 liftForce;
+    public Vector3 thrustForce;
+    public Vector3 pitchForce;
+    public Vector3 rollForce;
+    public Vector3 dragForce;
 
     private Rigidbody _rigidbody;
 
@@ -39,22 +52,27 @@ public class SpaceShip : MonoBehaviour
     public void FixedUpdate()
     {
         var trans = transform;
+        var rot = trans.rotation;
         var velocity = _rigidbody.velocity;
-        
-        trans.Rotate(Vector3.forward, rollPower * fullRollSpeed * Time.fixedDeltaTime);
-        trans.Rotate(Vector3.right, pitchPower * fullPitchSpeed * Time.fixedDeltaTime);
+        var localUp = trans.up;
+
+        pitchForce = localUp * fullPitchForce * pitchPower;
+        rollForce = localUp * fullRollForce * rollPower;
+
+        _rigidbody.AddForceAtPosition(pitchForce, tailPoint.position);
+        _rigidbody.AddForceAtPosition(-rollForce, leftWing.position);
+        _rigidbody.AddForceAtPosition(rollForce, rightWing.position);
 
         var forwardSpeed = Vector3.Dot(velocity, trans.forward);
 
-        _liftForce = Vector3.up * forwardSpeed * forwardSpeed * liftForceCoefficient;
-        _thrustForce = Vector3.forward * power * fullThrustForce;
+        liftForce = Vector3.up * forwardSpeed * forwardSpeed * liftForceCoefficient;
+        thrustForce = Vector3.forward * power * fullThrustForce;
 
-        var sqrVelocity = velocity.sqrMagnitude;
-        _dragAbsoluteForce = -velocity.normalized * sqrVelocity * dragCoefficient;
+        var relativeVelocity = Quaternion.Inverse(rot) * velocity;
+        dragForce = Vector3.Scale(Vector3.Scale(relativeVelocity, relativeVelocity), -dragCoefficient);
 
-        _rigidbody.AddRelativeForce(_thrustForce + _thrustForce);
-        _rigidbody.AddForce(_dragAbsoluteForce);
-        
+        _rigidbody.AddRelativeForce(thrustForce + thrustForce + dragForce);
+
         if (_rigidbody.velocity.magnitude > maxVelocity)
         {
             _rigidbody.velocity = _rigidbody.velocity.normalized * maxVelocity;
@@ -66,16 +84,28 @@ public class SpaceShip : MonoBehaviour
         var t = transform;
         var pos = t.position;
         var rot = t.rotation;
+        var lwPos = leftWing.position;
+        var rwPos = rightWing.position;
+        var tailPos = tailPoint.position;
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(pos, pos + rot * _liftForce);
+        Gizmos.DrawLine(pos, pos + rot * liftForce);
 
         Gizmos.color = Color.red;
         Gizmos.DrawLine(pos, pos + Physics.gravity);
-        Gizmos.DrawLine(pos, pos + _dragAbsoluteForce);
+
+        // drag axis
+        Gizmos.DrawLine(pos, pos + t.right * dragForce.x);
+        Gizmos.DrawLine(pos, pos + t.up * dragForce.y);
+        Gizmos.DrawLine(pos, pos + t.forward * dragForce.z);
+        Gizmos.color = Color.black;
+        Gizmos.DrawLine(pos, pos + rot * dragForce);
 
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(pos, pos + rot * _thrustForce);
+        Gizmos.DrawLine(pos, pos + rot * thrustForce);
+        Gizmos.DrawLine(lwPos, lwPos - rollForce);
+        Gizmos.DrawLine(rwPos, rwPos + rollForce);
+        Gizmos.DrawLine(tailPos, tailPos + pitchForce);
 
         if (_rigidbody)
         {
