@@ -50,6 +50,18 @@ public class PlayerController : MonoBehaviour
         {
             _spaceShip.rollPower = 0;
         }
+        
+#if UNITY_EDITOR
+        if (Keyboard.current.minusKey.wasPressedThisFrame)
+        {
+            Time.timeScale /= 2;
+        }
+
+        if (Keyboard.current.equalsKey.wasPressedThisFrame)
+        {
+            Time.timeScale *= 2;
+        }
+#endif
     }
 
     private void AddValueInRange(ref float v, float delta, float min = 0f, float max = 1f)
