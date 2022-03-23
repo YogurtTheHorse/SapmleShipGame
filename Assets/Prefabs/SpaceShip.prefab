@@ -92,16 +92,20 @@ MonoBehaviour:
   power: 0
   rollPower: 0
   pitchPower: 0
-  fullRollForce: 0.4
-  fullPitchForce: 0.2
-  fullThrustForce: 50
-  liftForceCoefficient: 0.001
-  dragCoefficient: {x: 0.002, y: 0.004, z: 0.001}
-  maxVelocity: 60
+  yawPower: 0
+  fullRollForce: 2
+  fullPitchForce: 1
+  fullYawForce: 0.1
+  fullThrustForce: 150
+  liftForceCoefficient: 0.05
+  dragCoefficient: {x: -0.06, y: -0.15, z: -0.01}
+  angularDagCoefficient: {x: -0.00002, y: -0.00002, z: -0.00002}
+  forwardSpeed: 0
   liftForce: {x: 0, y: 0, z: 0}
   thrustForce: {x: 0, y: 0, z: 0}
-  pitchForce: {x: 0, y: 0, z: 0}
-  rollForce: {x: 0, y: 0, z: 0}
+  pitchForce: {x: -0, y: 0, z: -0}
+  rollForce: {x: -0, y: 0, z: -0}
+  yawForce: {x: 0, y: 0, z: 0}
   dragForce: {x: 0, y: 0, z: 0}
 --- !u!54 &2298262789275887588
 Rigidbody:
@@ -111,7 +115,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2805708832625078297}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1

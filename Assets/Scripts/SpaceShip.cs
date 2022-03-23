@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody))]
 public class SpaceShip : MonoBehaviour
@@ -10,7 +9,7 @@ public class SpaceShip : MonoBehaviour
     [Tooltip("Right wing point of force applying for rolling")]
     public Transform rightWing;
 
-    [Tooltip("Point of applying pitch force")]
+    [Tooltip("Point of applying pitch and yaw force")]
     public Transform tailPoint;
 
     [Range(0, 1), Tooltip("Current power on engine")]
@@ -22,19 +21,23 @@ public class SpaceShip : MonoBehaviour
     [Range(-1, 1), Tooltip("Current pitch rotation power")]
     public float pitchPower = 0;
 
-    [Tooltip("Speed of changing roll angle per second. Degrees.")]
+    [Range(-1, 1), Tooltip("Current yaw rotation power")]
+    public float yawPower = 0;
+
+    [Tooltip("Force applying on wings for rolling.")]
     public float fullRollForce = 120f;
 
-    [Tooltip("Speed of changing pitch angle per second. Degrees.")]
+    [Tooltip("Force applying on tail for pitching.")]
     public float fullPitchForce = 30f;
+
+    [Tooltip("Force applying on tail for yawing.")]
+    public float fullYawForce = 30f;
 
     [Tooltip("Max speed of movement")]
     public float fullThrustForce = 50;
 
     public float liftForceCoefficient = 0.01f;
-    
-    public float maxVelocity = 130;
-    
+
     public Vector3 dragCoefficient = Vector3.zero;
     public Vector3 angularDagCoefficient = Vector3.zero;
 
@@ -44,6 +47,7 @@ public class SpaceShip : MonoBehaviour
     public Vector3 thrustForce;
     public Vector3 pitchForce;
     public Vector3 rollForce;
+    public Vector3 yawForce;
     public Vector3 dragForce;
 
     private Rigidbody _rigidbody;
@@ -51,6 +55,7 @@ public class SpaceShip : MonoBehaviour
     public void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _rigidbody.centerOfMass = Vector3.zero;
     }
 
     public void FixedUpdate()
@@ -62,27 +67,29 @@ public class SpaceShip : MonoBehaviour
 
         pitchForce = localUp * fullPitchForce * pitchPower;
         rollForce = localUp * fullRollForce * rollPower;
+        yawForce = -trans.right * fullYawForce * yawPower;
 
-        _rigidbody.AddForceAtPosition(pitchForce, tailPoint.position);
+        _rigidbody.AddForceAtPosition(pitchForce + yawForce, tailPoint.position);
         _rigidbody.AddForceAtPosition(-rollForce, leftWing.position);
         _rigidbody.AddForceAtPosition(rollForce, rightWing.position);
 
         forwardSpeed = Vector3.Dot(velocity, trans.forward);
 
+        var relativeVelocity = Quaternion.Inverse(rot) * velocity;
+        var angularVelocity = _rigidbody.angularVelocity;
+        var sqrVelocity = relativeVelocity.normalized * relativeVelocity.sqrMagnitude;
+        var sqrAngularVelocity = angularVelocity.normalized * angularVelocity.sqrMagnitude;
+        var rotatedAngularDragCoefficients = rot * angularDagCoefficient;
+
+        dragForce = Vector3.Scale(sqrVelocity, dragCoefficient);
         liftForce = Vector3.up * forwardSpeed * forwardSpeed * liftForceCoefficient;
         thrustForce = Vector3.forward * power * fullThrustForce;
 
-        var relativeVelocity = Quaternion.Inverse(rot) * velocity;
-        var sqrVelocity = Vector3.Scale(relativeVelocity, relativeVelocity);
-        dragForce = Vector3.Scale(sqrVelocity, dragCoefficient);
-        
-        _rigidbody.angularVelocity += Vector3.Scale(_rigidbody.angularVelocity, Vector3.Scale(sqrVelocity, angularDagCoefficient));
-        _rigidbody.AddRelativeForce(thrustForce + thrustForce + dragForce + liftForce);
-
-        if (_rigidbody.velocity.magnitude > maxVelocity)
-        {
-            _rigidbody.velocity = _rigidbody.velocity.normalized * maxVelocity;
-        }
+        _rigidbody.angularVelocity += Vector3.Scale(
+            _rigidbody.angularVelocity,
+            Vector3.Scale(sqrAngularVelocity, rotatedAngularDragCoefficients)
+        );
+        _rigidbody.AddRelativeForce(thrustForce + dragForce + liftForce);
     }
 
     public void OnDrawGizmos()

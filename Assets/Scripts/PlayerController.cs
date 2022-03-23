@@ -50,8 +50,21 @@ public class PlayerController : MonoBehaviour
         {
             _spaceShip.rollPower = 0;
         }
+
+
+        if (Keyboard.current.qKey.isPressed)
+        {
+            _spaceShip.yawPower = -1;
+        }
+        else if (Keyboard.current.eKey.isPressed)
+        {
+            _spaceShip.yawPower = 1;
+        }
+        else
+        {
+            _spaceShip.yawPower = 0;
+        }
         
-#if UNITY_EDITOR
         if (Keyboard.current.minusKey.wasPressedThisFrame)
         {
             Time.timeScale /= 2;
@@ -61,7 +74,6 @@ public class PlayerController : MonoBehaviour
         {
             Time.timeScale *= 2;
         }
-#endif
     }
 
     private void AddValueInRange(ref float v, float delta, float min = 0f, float max = 1f)
