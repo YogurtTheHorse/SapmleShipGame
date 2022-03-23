@@ -295,7 +295,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 3.5349398, y: 1}
+    m_SensorSize: {x: 2.5553472, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -312,13 +312,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194970777}
   m_LocalRotation: {x: 0.22123663, y: 0, z: 0, w: 0.97522014}
-  m_LocalPosition: {x: 0, y: 21.27, z: -6}
+  m_LocalPosition: {x: 0, y: 21.37, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1214357232}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &507782367
 PrefabInstance:
@@ -807,13 +807,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323521623}
-  m_LocalRotation: {x: 0.22123663, y: 0, z: 0, w: 0.97522014}
-  m_LocalPosition: {x: 0, y: 21.27, z: -6}
+  m_LocalRotation: {x: 0.22123663, y: -0, z: -0, w: 0.97522014}
+  m_LocalPosition: {x: 0, y: 5.370001, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 1557420374}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 14.55, y: 0, z: 0}
 --- !u!114 &1323521627
 MonoBehaviour:
@@ -1047,7 +1047,7 @@ PrefabInstance:
     - target: {fileID: 3288808594836515491, guid: f020ad5c633474636909ae138a28a1db,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3288808594836515491, guid: f020ad5c633474636909ae138a28a1db,
         type: 3}
@@ -1057,7 +1057,7 @@ PrefabInstance:
     - target: {fileID: 3288808594836515491, guid: f020ad5c633474636909ae138a28a1db,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.9
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3288808594836515491, guid: f020ad5c633474636909ae138a28a1db,
         type: 3}
@@ -1077,12 +1077,12 @@ PrefabInstance:
     - target: {fileID: 3288808594836515491, guid: f020ad5c633474636909ae138a28a1db,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3288808594836515491, guid: f020ad5c633474636909ae138a28a1db,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3288808594836515491, guid: f020ad5c633474636909ae138a28a1db,
         type: 3}
@@ -1098,6 +1098,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5513375653872338176, guid: f020ad5c633474636909ae138a28a1db,
+        type: 3}
+      propertyPath: maxVelocity
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5513375653872338176, guid: f020ad5c633474636909ae138a28a1db,
+        type: 3}
+      propertyPath: fullPitchForce
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5513375653872338176, guid: f020ad5c633474636909ae138a28a1db,
+        type: 3}
+      propertyPath: fullThrustForce
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5513375653872338176, guid: f020ad5c633474636909ae138a28a1db,
+        type: 3}
+      propertyPath: dragCoefficient.x
+      value: -0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 5513375653872338176, guid: f020ad5c633474636909ae138a28a1db,
+        type: 3}
+      propertyPath: dragCoefficient.y
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5513375653872338176, guid: f020ad5c633474636909ae138a28a1db,
+        type: 3}
+      propertyPath: dragCoefficient.z
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5513375653872338176, guid: f020ad5c633474636909ae138a28a1db,
+        type: 3}
+      propertyPath: liftForceCoefficient
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 5513375653872338176, guid: f020ad5c633474636909ae138a28a1db,
+        type: 3}
+      propertyPath: angularDagCoefficient.z
+      value: -0.00002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f020ad5c633474636909ae138a28a1db, type: 3}
@@ -1408,17 +1448,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7ff148e431d2045628c42f47c3e11f24,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1000
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7ff148e431d2045628c42f47c3e11f24,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1000
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7ff148e431d2045628c42f47c3e11f24,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1000
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7ff148e431d2045628c42f47c3e11f24,
         type: 3}

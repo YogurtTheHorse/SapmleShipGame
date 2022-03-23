@@ -32,9 +32,13 @@ public class SpaceShip : MonoBehaviour
     public float fullThrustForce = 50;
 
     public float liftForceCoefficient = 0.01f;
-    public Vector3 dragCoefficient = Vector3.zero;
-
+    
     public float maxVelocity = 130;
+    
+    public Vector3 dragCoefficient = Vector3.zero;
+    public Vector3 angularDagCoefficient = Vector3.zero;
+
+    public float forwardSpeed;
 
     public Vector3 liftForce;
     public Vector3 thrustForce;
@@ -63,15 +67,17 @@ public class SpaceShip : MonoBehaviour
         _rigidbody.AddForceAtPosition(-rollForce, leftWing.position);
         _rigidbody.AddForceAtPosition(rollForce, rightWing.position);
 
-        var forwardSpeed = Vector3.Dot(velocity, trans.forward);
+        forwardSpeed = Vector3.Dot(velocity, trans.forward);
 
         liftForce = Vector3.up * forwardSpeed * forwardSpeed * liftForceCoefficient;
         thrustForce = Vector3.forward * power * fullThrustForce;
 
         var relativeVelocity = Quaternion.Inverse(rot) * velocity;
-        dragForce = Vector3.Scale(Vector3.Scale(relativeVelocity, relativeVelocity), -dragCoefficient);
-
-        _rigidbody.AddRelativeForce(thrustForce + thrustForce + dragForce);
+        var sqrVelocity = Vector3.Scale(relativeVelocity, relativeVelocity);
+        dragForce = Vector3.Scale(sqrVelocity, dragCoefficient);
+        
+        _rigidbody.angularVelocity += Vector3.Scale(_rigidbody.angularVelocity, Vector3.Scale(sqrVelocity, angularDagCoefficient));
+        _rigidbody.AddRelativeForce(thrustForce + thrustForce + dragForce + liftForce);
 
         if (_rigidbody.velocity.magnitude > maxVelocity)
         {
