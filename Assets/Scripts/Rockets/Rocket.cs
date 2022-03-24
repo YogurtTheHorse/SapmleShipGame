@@ -6,11 +6,45 @@ public class Rocket : MonoBehaviour
 {
     public float speed = 100;
 
+    public float lifeTime = 35f;
+
+    public float leftTime = 0;
+
+    private Rigidbody _rigidbody;
+
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void FixedUpdate()
+    {
+        _rigidbody.velocity = transform.up * speed;
+    }
+
+
     private void Update()
     {
-        var t = transform;
+        leftTime -= Time.deltaTime;
 
-        t.position += t.up * speed * Time.deltaTime;
+        if (leftTime <= 0)
+        {
+            Explode();
+        }
+    }
+
+    private void OnCollisionStay(Collision c)
+    {
+        Debug.Log(c.gameObject.name);
+
+        Explode();
+    }
+
+    public void Explode()
+    {
+        gameObject.SetActive(false);
+
+        Debug.Log("explode");
     }
 
     public class Factory : PlaceholderFactory<Rocket> { }

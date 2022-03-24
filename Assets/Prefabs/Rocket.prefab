@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9124800100984781868}
+  - component: {fileID: 3264225717109764904}
   - component: {fileID: 5264170088456156041}
   - component: {fileID: 7992448446138844995}
   - component: {fileID: 6160801586912707447}
-  - component: {fileID: 3264225717109764904}
+  - component: {fileID: 7406748603380482208}
   - component: {fileID: 6885232666145825469}
   - component: {fileID: 2369532852870448134}
   m_Layer: 0
@@ -31,12 +32,27 @@ Transform:
   m_GameObject: {fileID: 8496636581385676438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.6504326, y: 15.010971, z: 2.8911476}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3264225717109764904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8496636581385676438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7563a0109ffa4659aee1c693d4a7e3f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 200
+  lifeTime: 35
+  leftTime: 0
 --- !u!33 &5264170088456156041
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -103,19 +119,22 @@ CapsuleCollider:
   m_Height: 1.9999999
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &3264225717109764904
-MonoBehaviour:
+--- !u!54 &7406748603380482208
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8496636581385676438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7563a0109ffa4659aee1c693d4a7e3f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 100
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!198 &6885232666145825469
 ParticleSystem:
   m_ObjectHideFlags: 0

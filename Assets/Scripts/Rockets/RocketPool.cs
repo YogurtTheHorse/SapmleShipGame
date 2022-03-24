@@ -12,20 +12,23 @@ public class RocketPool
 
     public Rocket Launch(Vector3 position, Quaternion rotation)
     {
-        var availableRocket = FindAvailableRocketOrNull();
+        var newRocket = FindAvailableRocketOrNull();
 
-        if (!availableRocket)
+        if (!newRocket)
         {
-            availableRocket = _rocketFactory.Create();
-            _pool.Add(availableRocket);
+            newRocket = _rocketFactory.Create();
+            _pool.Add(newRocket);
         }
 
-        var t = availableRocket.transform;
+        var t = newRocket.transform;
         
         t.position = position;
         t.rotation = rotation;
 
-        return availableRocket;
+        newRocket.gameObject.SetActive(true);
+        newRocket.leftTime = newRocket.lifeTime;
+        
+        return newRocket;
     }
 
     private Rocket FindAvailableRocketOrNull() => _pool.FirstOrDefault(r => !r.gameObject.activeInHierarchy);
