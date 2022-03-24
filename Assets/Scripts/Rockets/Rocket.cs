@@ -12,6 +12,9 @@ public class Rocket : MonoBehaviour
 
     private Rigidbody _rigidbody;
 
+    [Inject]
+    private ExplosionSpawner _explosionSpawner;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -44,7 +47,7 @@ public class Rocket : MonoBehaviour
     {
         gameObject.SetActive(false);
 
-        Debug.Log("explode");
+        _explosionSpawner.Spawn(transform.position);
     }
 
     public class Factory : PlaceholderFactory<Rocket> { }
