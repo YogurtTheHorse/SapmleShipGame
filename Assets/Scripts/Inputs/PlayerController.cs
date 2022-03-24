@@ -82,6 +82,11 @@ public class PlayerController : MonoBehaviour
         {
             _rocketLauncher.Launch();
         }
+
+        if (Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            _spaceShip.Reset();
+        }
     }
 
     private void AddValueInRange(ref float v, float delta, float min = 0f, float max = 1f)

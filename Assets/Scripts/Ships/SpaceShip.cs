@@ -86,10 +86,7 @@ public class SpaceShip : MonoBehaviour
         liftForce = Vector3.up * forwardSpeed * forwardSpeed * liftForceCoefficient;
         thrustForce = Vector3.forward * power * fullThrustForce;
 
-        _rigidbody.angularVelocity += Vector3.Scale(
-            _rigidbody.angularVelocity,
-            angularAntiVelocity
-        );
+        _rigidbody.angularVelocity += Vector3.Scale(_rigidbody.angularVelocity, angularAntiVelocity);
         _rigidbody.AddRelativeForce(thrustForce + dragForce + liftForce);
     }
 
@@ -126,5 +123,16 @@ public class SpaceShip : MonoBehaviour
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(pos, pos + _rigidbody.velocity);
         }
+    }
+
+    public void Reset()
+    {
+        var t = transform;
+        
+        t.position = new Vector3(0, 16, 0);
+        t.rotation = Quaternion.identity;
+
+        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero;
     }
 }
