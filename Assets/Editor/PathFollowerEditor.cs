@@ -7,6 +7,9 @@ public class PathFollowerEditor : Editor
     private void OnSceneViewGUI(SceneView sv)
     {
         var pathFollower = (PathFollower)target;
+        
+        if (!pathFollower) return;
+        
         var path = pathFollower.path;
         var zero = pathFollower.transform.position;
 
