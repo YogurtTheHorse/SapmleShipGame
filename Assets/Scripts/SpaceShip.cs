@@ -25,18 +25,18 @@ public class SpaceShip : MonoBehaviour
     public float yawPower = 0;
 
     [Tooltip("Force applying on wings for rolling.")]
-    public float fullRollForce = 120f;
+    public float fullRollForce = 2f;
 
     [Tooltip("Force applying on tail for pitching.")]
-    public float fullPitchForce = 30f;
+    public float fullPitchForce = 0.1f;
 
     [Tooltip("Force applying on tail for yawing.")]
-    public float fullYawForce = 30f;
+    public float fullYawForce = 0.1f;
 
     [Tooltip("Max speed of movement")]
-    public float fullThrustForce = 50;
+    public float fullThrustForce = 150;
 
-    public float liftForceCoefficient = 0.01f;
+    public float liftForceCoefficient = 0.07f;
 
     public Vector3 dragCoefficient = Vector3.zero;
     public Vector3 angularDagCoefficient = Vector3.zero;
@@ -80,6 +80,7 @@ public class SpaceShip : MonoBehaviour
         var sqrVelocity = relativeVelocity.normalized * relativeVelocity.sqrMagnitude;
         var sqrAngularVelocity = angularVelocity.normalized * angularVelocity.sqrMagnitude;
         var rotatedAngularDragCoefficients = rot * angularDagCoefficient;
+        var angularAntiVelocity = Vector3.Scale(sqrAngularVelocity, angularDagCoefficient);
 
         dragForce = Vector3.Scale(sqrVelocity, dragCoefficient);
         liftForce = Vector3.up * forwardSpeed * forwardSpeed * liftForceCoefficient;
@@ -87,7 +88,7 @@ public class SpaceShip : MonoBehaviour
 
         _rigidbody.angularVelocity += Vector3.Scale(
             _rigidbody.angularVelocity,
-            Vector3.Scale(sqrAngularVelocity, rotatedAngularDragCoefficients)
+            angularAntiVelocity
         );
         _rigidbody.AddRelativeForce(thrustForce + dragForce + liftForce);
     }

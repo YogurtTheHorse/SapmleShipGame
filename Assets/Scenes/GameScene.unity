@@ -265,7 +265,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &194970778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,7 +295,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.5553472, y: 1}
+    m_SensorSize: {x: 3.3300734, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -312,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194970777}
   m_LocalRotation: {x: 0.22123663, y: 0, z: 0, w: 0.97522014}
-  m_LocalPosition: {x: 0, y: 21.37, z: -6}
+  m_LocalPosition: {x: 0, y: 21.37, z: -9.653}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -729,12 +729,12 @@ PrefabInstance:
     - target: {fileID: 3288808594836515491, guid: f020ad5c633474636909ae138a28a1db,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 46.97
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3288808594836515491, guid: f020ad5c633474636909ae138a28a1db,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 72.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3288808594836515491, guid: f020ad5c633474636909ae138a28a1db,
         type: 3}
@@ -796,6 +796,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c175f0a1de2d4fba916ae5d1563c033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetPosition: {x: 0, y: 100, z: 300}
+  projectedTargetPoint: {x: 0, y: 0, z: 0}
+  distanceFromShipPlane: 0
+  pitchDelta: 0
+  rollDelta: 0
+  currentRoll: 0
 --- !u!1 &1266329013 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b701197e10fc348c5b860caa235fe7c5,
@@ -873,7 +879,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 20000
+  far clip plane: 1000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -1136,6 +1142,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpaceShip
       objectReference: {fileID: 0}
+    - target: {fileID: 2805708832625078297, guid: f020ad5c633474636909ae138a28a1db,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3288808594836515491, guid: f020ad5c633474636909ae138a28a1db,
         type: 3}
       propertyPath: m_RootOrder
@@ -1154,7 +1165,7 @@ PrefabInstance:
     - target: {fileID: 3288808594836515491, guid: f020ad5c633474636909ae138a28a1db,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3.653
       objectReference: {fileID: 0}
     - target: {fileID: 3288808594836515491, guid: f020ad5c633474636909ae138a28a1db,
         type: 3}

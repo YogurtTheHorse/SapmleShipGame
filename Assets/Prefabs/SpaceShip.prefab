@@ -97,7 +97,7 @@ MonoBehaviour:
   fullPitchForce: 1
   fullYawForce: 0.1
   fullThrustForce: 150
-  liftForceCoefficient: 0.05
+  liftForceCoefficient: 0.07
   dragCoefficient: {x: -0.06, y: -0.15, z: -0.01}
   angularDagCoefficient: {x: -0.00002, y: -0.00002, z: -0.00002}
   forwardSpeed: 0
