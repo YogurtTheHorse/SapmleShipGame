@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(SpaceShip))]
+[RequireComponent(typeof(RocketLauncher))]
 public class PlayerController : MonoBehaviour
 {
     public float powerAcceleration = 1;
@@ -12,10 +13,12 @@ public class PlayerController : MonoBehaviour
     public float pitchPowerAcceleration = 0.3f;
 
     private SpaceShip _spaceShip;
+    private RocketLauncher _rocketLauncher;
 
     public void Awake()
     {
         _spaceShip = GetComponent<SpaceShip>();
+        _rocketLauncher = GetComponent<RocketLauncher>();
     }
 
     private void Update()
@@ -73,6 +76,11 @@ public class PlayerController : MonoBehaviour
         if (Keyboard.current.equalsKey.wasPressedThisFrame)
         {
             Time.timeScale *= 2;
+        }
+
+        if (Keyboard.current.leftCtrlKey.wasPressedThisFrame)
+        {
+            _rocketLauncher.Launch();
         }
     }
 

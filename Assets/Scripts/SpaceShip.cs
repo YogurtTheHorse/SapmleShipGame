@@ -80,7 +80,7 @@ public class SpaceShip : MonoBehaviour
         var sqrVelocity = relativeVelocity.normalized * relativeVelocity.sqrMagnitude;
         var sqrAngularVelocity = angularVelocity.normalized * angularVelocity.sqrMagnitude;
         var rotatedAngularDragCoefficients = rot * angularDagCoefficient;
-        var angularAntiVelocity = Vector3.Scale(sqrAngularVelocity, angularDagCoefficient);
+        var angularAntiVelocity = Vector3.Scale(sqrAngularVelocity, rotatedAngularDragCoefficients);
 
         dragForce = Vector3.Scale(sqrVelocity, dragCoefficient);
         liftForce = Vector3.up * forwardSpeed * forwardSpeed * liftForceCoefficient;

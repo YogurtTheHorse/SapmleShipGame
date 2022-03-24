@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2240533595856406901}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -1, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3288808594836515491}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &2805708832625078297
 GameObject:
   m_ObjectHideFlags: 0
@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 5946077021758134421}
   - component: {fileID: 570806604059755208}
   - component: {fileID: 5925472254983554557}
+  - component: {fileID: 8613925694378626686}
   m_Layer: 0
   m_Name: SpaceShip
   m_TagString: Untagged
@@ -71,6 +72,8 @@ Transform:
   - {fileID: 1171090803656599115}
   - {fileID: 46154086560946534}
   - {fileID: 2771557949066087184}
+  - {fileID: 755423911702027569}
+  - {fileID: 1428738902005812584}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -241,6 +244,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.32814407, y: 0.1734364, z: 0.51180124}
   m_Center: {x: 0.014792323, y: 0.3670436, z: 0.7828208}
+--- !u!114 &8613925694378626686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2805708832625078297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2bdf497454ba4f59bd4b0caa2b2f16d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rocketPrefab: {fileID: 3264225717109764904, guid: 8a745b86927b54501b519ec3fa680d0f,
+    type: 3}
+  launchTransforms:
+  - {fileID: 755423911702027569}
+  - {fileID: 1428738902005812584}
+  launchIndex: 0
+--- !u!1 &3606404434571846410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1428738902005812584}
+  m_Layer: 0
+  m_Name: Right Rocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1428738902005812584
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3606404434571846410}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.9, y: -0.06, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3288808594836515491}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &6182903820353940967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 755423911702027569}
+  m_Layer: 0
+  m_Name: Left Rocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &755423911702027569
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6182903820353940967}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.9, y: -0.06, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3288808594836515491}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &6472914886645334177
 GameObject:
   m_ObjectHideFlags: 0
