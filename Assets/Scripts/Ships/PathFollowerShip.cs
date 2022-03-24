@@ -14,4 +14,9 @@ public class PathFollowerShip : MonoBehaviour
         
         _oldPosition = pos;
     }
+
+    private void Explode()
+    {
+        Destroy(transform.parent.gameObject);
+    }
 }

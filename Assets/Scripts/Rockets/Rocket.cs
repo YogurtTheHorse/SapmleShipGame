@@ -39,6 +39,7 @@ public class Rocket : MonoBehaviour
     private void OnCollisionStay(Collision c)
     {
         Debug.Log(c.gameObject.name);
+        c.gameObject.SendMessageUpwards("Explode", SendMessageOptions.DontRequireReceiver);
 
         Explode();
     }
