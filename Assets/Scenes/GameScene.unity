@@ -1711,6 +1711,73 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1986609125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1986609127}
+  - component: {fileID: 1986609126}
+  m_Layer: 0
+  m_Name: Path follower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1986609126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986609125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ea9b179f5294ad3bf71ca8238cb2911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loop: 1
+  sections:
+  - bindTangentToPrevious: 1
+    startPoint: {x: 84.41944, y: 0, z: -77.0783}
+    endPoint: {x: -60.292854, y: 0, z: 20.217804}
+    startTangent: {x: -77.62537, y: 0, z: 1.1393814}
+    endTangent: {x: -11.546425, y: -0, z: -19.591106}
+  - bindTangentToPrevious: 1
+    startPoint: {x: -60.292854, y: 0, z: 20.217804}
+    endPoint: {x: 23.689804, y: 0, z: 137.18759}
+    startTangent: {x: 11.546425, y: 0, z: 19.591106}
+    endTangent: {x: -84.518036, y: 14.312904, z: -50.02482}
+  - bindTangentToPrevious: 1
+    startPoint: {x: 23.689804, y: 0, z: 137.18759}
+    endPoint: {x: 203.75111, y: 0, z: 70.75198}
+    startTangent: {x: 84.518036, y: -14.312904, z: 50.02482}
+    endTangent: {x: -23.906921, y: 14.312904, z: 40.139915}
+  - bindTangentToPrevious: 1
+    startPoint: {x: 203.75111, y: 0, z: 70.75198}
+    endPoint: {x: 84.41944, y: 0, z: -77.0783}
+    startTangent: {x: 23.906921, y: -14.312904, z: -40.139915}
+    endTangent: {x: 77.62537, y: -0, z: -1.1393814}
+  currentSection: 0
+--- !u!4 &1986609127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986609125}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.1, y: 29.100718, z: -12.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2008074572
 PrefabInstance:
   m_ObjectHideFlags: 0
