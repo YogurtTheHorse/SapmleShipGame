@@ -27,11 +27,11 @@ public class PlayerController : MonoBehaviour
 
         AddValueInRange(ref _spaceShip.power, speedDelta);
 
-        if (Keyboard.current.wKey.isPressed)
+        if (Keyboard.current.wKey.isPressed || Keyboard.current.upArrowKey.isPressed)
         {
             _spaceShip.pitchPower = 1;
         }
-        else if (Keyboard.current.sKey.isPressed)
+        else if (Keyboard.current.sKey.isPressed || Keyboard.current.downArrowKey.isPressed)
         {
             _spaceShip.pitchPower = -1;
         }
@@ -41,11 +41,11 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (Keyboard.current.dKey.isPressed)
+        if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
         {
             _spaceShip.rollPower = -1;
         }
-        else if (Keyboard.current.aKey.isPressed)
+        else if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
         {
             _spaceShip.rollPower = 1;
         }
