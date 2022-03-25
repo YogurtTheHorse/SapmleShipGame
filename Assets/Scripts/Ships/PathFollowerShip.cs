@@ -31,8 +31,6 @@ public class PathFollowerShip : MonoBehaviour
         var vectorToPlayer = playerTrans.position - pos;
         var angleToPlayer = Vector2.Angle(playerTrans.forward, vectorToPlayer);
 
-        Debug.Log(angleToPlayer);
-
         if (angleToPlayer < shootAngle)
         {
             _rocketLauncher.Launch();
