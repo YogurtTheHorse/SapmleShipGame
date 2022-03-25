@@ -34,7 +34,7 @@ public class ShipAI : MonoBehaviour
         projectedTargetPoint = MathUtils.ClosestPointOnPlane(position, up, targetPosition);
         distanceFromShipPlane = MathUtils.DistanceFromPlane(position, up, targetPosition);
         var pitchRadDelta = Mathf.Atan2(distanceFromShipPlane, (projectedTargetPoint - position).magnitude);
-        pitchDelta = 10f + 180 * pitchRadDelta / MathF.PI;
+        pitchDelta = 10f + pitchRadDelta * Mathf.Rad2Deg;
 
         _ship.pitchPower = ClampAngleToPower(pitchDelta, 30f);
         
