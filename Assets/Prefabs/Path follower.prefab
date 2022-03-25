@@ -187,5 +187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979ba1a5ae954192ace87a77f537f225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizontalEllipseCoefficient: 0.9
+  verticalEllipseCoefficient: 0.9
+  planeImagePrefab: {fileID: 294203546890066027, guid: 66183e092e10e4c7292ec840db4e841f,
+    type: 3}
   fontSize: 12
   textOffset: {x: 3, y: 1, z: 0}
