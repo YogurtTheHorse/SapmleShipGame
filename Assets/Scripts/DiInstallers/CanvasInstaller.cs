@@ -1,13 +1,16 @@
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(Canvas))]
-public class CanvasInstaller : MonoInstaller
+namespace DiInstallers
 {
-    public string canvasId;
-    
-    public override void InstallBindings()
+    [RequireComponent(typeof(Canvas))]
+    public class CanvasInstaller : MonoInstaller
     {
-        Container.BindInstance(GetComponent<Canvas>()).WithId(canvasId);
+        public string canvasId;
+    
+        public override void InstallBindings()
+        {
+            Container.BindInstance(GetComponent<Canvas>()).WithId(canvasId);
+        }
     }
 }

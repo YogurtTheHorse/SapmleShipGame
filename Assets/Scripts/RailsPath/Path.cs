@@ -1,9 +1,12 @@
 using System;
 
-[Serializable]
-public class Path
+namespace RailsPath
 {
-    public bool loop = true;
+    [Serializable]
+    public class Path
+    {
+        public bool loop = true;
 
-    public PathSection[] sections = { };
+        public PathSection[] sections = { };
+    }
 }

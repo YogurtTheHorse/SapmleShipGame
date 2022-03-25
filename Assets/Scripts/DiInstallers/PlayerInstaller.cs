@@ -1,11 +1,15 @@
+using Ships;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(SpaceShip))]
-public class PlayerInstaller : MonoInstaller
+namespace DiInstallers
 {
-    public override void InstallBindings()
+    [RequireComponent(typeof(SpaceShip))]
+    public class PlayerInstaller : MonoInstaller
     {
-        Container.BindInstance(gameObject).WithId("player");
+        public override void InstallBindings()
+        {
+            Container.BindInstance(gameObject).WithId("player");
+        }
     }
 }

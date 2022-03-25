@@ -1,44 +1,47 @@
-using System;
+using Rockets;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(RocketLauncher))]
-public class PathFollowerShip : MonoBehaviour
+namespace Ships
 {
-    public float shootAngle = 15f;
-    
-    [Inject(Id = "player")]
-    private GameObject _player;
-    
-    private Vector3 _oldPosition;
-    private RocketLauncher _rocketLauncher;
-
-    private void Awake()
+    [RequireComponent(typeof(RocketLauncher))]
+    public class PathFollowerShip : MonoBehaviour
     {
-        _rocketLauncher = GetComponent<RocketLauncher>();
-    }
+        public float shootAngle = 15f;
+    
+        [Inject(Id = "player")]
+        private GameObject _player;
+    
+        private Vector3 _oldPosition;
+        private RocketLauncher _rocketLauncher;
 
-    private void Update()
-    {
-        var pos = transform.position;
-        var delta = pos - _oldPosition;
-        
-        transform.LookAt(pos + delta);
-        
-        _oldPosition = pos;
-
-        var playerTrans = _player.transform;
-        var vectorToPlayer = playerTrans.position - pos;
-        var angleToPlayer = Vector2.Angle(playerTrans.forward, vectorToPlayer);
-
-        if (angleToPlayer < shootAngle)
+        private void Awake()
         {
-            _rocketLauncher.Launch();
+            _rocketLauncher = GetComponent<RocketLauncher>();
         }
-    }
 
-    private void Explode()
-    {
-        Destroy(transform.parent.gameObject);
+        private void Update()
+        {
+            var pos = transform.position;
+            var delta = pos - _oldPosition;
+        
+            transform.LookAt(pos + delta);
+        
+            _oldPosition = pos;
+
+            var playerTrans = _player.transform;
+            var vectorToPlayer = playerTrans.position - pos;
+            var angleToPlayer = Vector2.Angle(playerTrans.forward, vectorToPlayer);
+
+            if (angleToPlayer < shootAngle)
+            {
+                _rocketLauncher.Launch();
+            }
+        }
+
+        private void Explode()
+        {
+            Destroy(transform.parent.gameObject);
+        }
     }
 }

@@ -1,19 +1,22 @@
 using UnityEngine;
 using Zenject;
 
-public class ExplosionSpawner
+namespace Explosions
 {
-    [Inject]
-    private ExplosionFactory _factory;
-
-    public Explosion Spawn(Vector3 position)
+    public class ExplosionSpawner
     {
-        var explosion = _factory.Create(); // not using pool as it's very small object
+        [Inject]
+        private ExplosionFactory _factory;
 
-        explosion.transform.position = position;
+        public Explosion Spawn(Vector3 position)
+        {
+            var explosion = _factory.Create(); // not using pool as it's very small object
 
-        return explosion;
-    }
+            explosion.transform.position = position;
+
+            return explosion;
+        }
     
-    public class ExplosionFactory : PlaceholderFactory<Explosion> { }
+        public class ExplosionFactory : PlaceholderFactory<Explosion> { }
+    }
 }

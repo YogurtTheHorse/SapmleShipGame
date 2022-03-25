@@ -1,13 +1,15 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-[Serializable]
-public class PathSection
+namespace RailsPath
 {
-    public bool bindTangentToPrevious = true;
+    [Serializable]
+    public class PathSection
+    {
+        public bool bindTangentToPrevious = true;
 
-    public Vector3 startPoint, endPoint;
+        public Vector3 startPoint, endPoint;
 
-    public Vector3 startTangent, endTangent;
+        public Vector3 startTangent, endTangent;
+    }
 }

@@ -1,3 +1,6 @@
 using UnityEngine;
 
-public class Explosion : MonoBehaviour { }
+namespace Explosions
+{
+    public class Explosion : MonoBehaviour { }
+}

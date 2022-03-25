@@ -3,33 +3,36 @@ using System.Linq;
 using UnityEngine;
 using Zenject;
 
-public class RocketPool
+namespace Rockets
 {
-    private List<Rocket> _pool = new();
-    
-    [Inject]
-    private Rocket.Factory _rocketFactory;
-
-    public Rocket Launch(Vector3 position, Quaternion rotation)
+    public class RocketPool
     {
-        var newRocket = FindAvailableRocketOrNull();
+        private List<Rocket> _pool = new();
+    
+        [Inject]
+        private Rocket.Factory _rocketFactory;
 
-        if (!newRocket)
+        public Rocket Launch(Vector3 position, Quaternion rotation)
         {
-            newRocket = _rocketFactory.Create();
-            _pool.Add(newRocket);
+            var newRocket = FindAvailableRocketOrNull();
+
+            if (!newRocket)
+            {
+                newRocket = _rocketFactory.Create();
+                _pool.Add(newRocket);
+            }
+
+            var t = newRocket.transform;
+        
+            t.position = position;
+            t.rotation = rotation;
+
+            newRocket.gameObject.SetActive(true);
+            newRocket.leftTime = newRocket.lifeTime;
+        
+            return newRocket;
         }
 
-        var t = newRocket.transform;
-        
-        t.position = position;
-        t.rotation = rotation;
-
-        newRocket.gameObject.SetActive(true);
-        newRocket.leftTime = newRocket.lifeTime;
-        
-        return newRocket;
+        private Rocket FindAvailableRocketOrNull() => _pool.FirstOrDefault(r => !r.gameObject.activeInHierarchy);
     }
-
-    private Rocket FindAvailableRocketOrNull() => _pool.FirstOrDefault(r => !r.gameObject.activeInHierarchy);
 }
